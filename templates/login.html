@@ -1,92 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "nav.html" %}
+{% block title %} login {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="/static/CSS/style.css">
-  <title>Document</title>
+<!-- Material form login -->
+<div class="card">
 
-</head>
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Sign in</strong>
+  </h5>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/home"><b>MLyze</b></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/text">Text</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/aboutUs">About us</a>
-          </li>
-          <!-- <li>
-                        <a href="login.html"><button class="btn btn-outline-success" type="button">Login</button></a>
-                    </li> -->
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <br />
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
 
-  <!-- Material form login -->
-  <div class="card">
-
-    <h5 class="card-header info-color white-text text-center py-4">
-      <strong>Sign in</strong>
-    </h5>
-
-    <br />
-    <!--Card content-->
-    <div class="card-body px-lg-5 pt-0">
-
-      <!-- Default form login -->
-      <form class="text-center border border-light p-5" action="#!">
+    <!-- Default form login -->
+    <form class="text-center border border-light p-5" action="{{ url_for('login')}}" method="POST">
 
 
-        <!-- Email -->
-        <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+      <!-- Email -->
+      <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" value="{{request.form.email}}">
 
-        <!-- Password -->
-        <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+      <!-- Password -->
+      <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password" value="{{request.form.password }}">
 
-        <!-- Sign in button -->
-        <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+      <!-- Sign in button -->
+      <button class="btn btn-info btn-block my-4" type="submit" value="login">Sign in</button>
 
-        <!-- Register -->
-        <p>Not a member?
-          <a href="/register">Register</a>
-        </p>
+      <!-- Register -->
+      <p>Not a member?
+        <a href="/register">Register</a>
+      </p>
 
 
 
-      </form>
-      <!-- Default form login -->
-    </div>
+    </form>
+    <!-- Default form login -->
   </div>
+</div>
 
 
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+  integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock %}

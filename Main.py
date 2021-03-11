@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 
 app = Flask(__name__)
 
@@ -14,9 +14,19 @@ def about():
 def text():
     return render_template('text.html')
 
-@app.route('/login')
+# @app.route('/login')
+# def login():
+#     return render_template('login.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    error = None
+    if request.method == 'POST':
+        if request.form['email'] != 'admin@gmail.com' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('text'))
+    return render_template('login.html', error=error)
 
 @app.route('/register')
 def register():
