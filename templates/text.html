@@ -40,15 +40,14 @@
         </div>
     </nav>
 
-    <form action="">
+    <form action="#" method="POST">
         <div class="form-group col-md-6">
             <p>Use sentiment analysis to quickly detect emotions in text data. Play around with our sentiment analyzer,
                 below:</p>
             <label><b>Test with your own text</b></label>
-            <textarea class="form-control animated rounded-0" id="exampleFormControlTextarea11"
-                rows="10">This is the best sentiment analysis tool ever!!!</textarea>
+            <input type="text" class="form-control animated rounded-0" id="exampleFormControlTextarea11" name="text"/>
             <br>
-            <button type="button">Classify Text</button>
+            <input type="submit" value="Classify Text"/>
         </div>
     </form>
     <div class="col-md-6">
