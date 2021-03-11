@@ -2,6 +2,7 @@ from sklearn import svm
 import json
 from Constants import stop_words, punctuations
 from nltk.stem import PorterStemmer
+from textblob import TextBlob
 
 class ProcessText:
     def __init__(self, file_path):
@@ -84,10 +85,4 @@ class ProcessText:
             if word in self.vocabulary:
                 bag_of_words[self.vocabulary[word]] = 1
 
-        print(self.classifier.predict([bag_of_words]))
-
-process_text = ProcessText('amazon_small.json')
-process_text.predict('I hated how he kicks the ball.')
-
-
-
+        return int(self.classifier.predict([bag_of_words])[0])
