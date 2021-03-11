@@ -5,15 +5,58 @@
 {% endblock %}
 {% block content %}
 
-<form action="">
-    <div class="form-group col-md-6">
-        <p>Use sentiment analysis to quickly detect emotions in text data. Play around with our sentiment analyzer,
-            below:</p>
-        <label><b>Test with your own text</b></label>
-        <textarea class="form-control animated rounded-0" id="exampleFormControlTextarea11"
-            rows="10">This is the best sentiment analysis tool ever!!!</textarea>
-        <br>
-        <button type="button">Classify Text</button>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home"><b>MLyze</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/text">Text</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/aboutUs">About us</a>
+                    </li>
+                    <li>
+                        <a href="/login"><button class="btn btn-outline-success" type="button">Login/Register</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <form action="#" method="POST">
+        <div class="form-group col-md-6">
+            <p>Use sentiment analysis to quickly detect emotions in text data. Play around with our sentiment analyzer,
+                below:</p>
+            <label><b>Test with your own text</b></label>
+            <input type="text" class="form-control animated rounded-0" id="exampleFormControlTextarea11" name="text"/>
+            <br>
+            <input type="submit" value="Classify Text"/>
+        </div>
+    </form>
+    <div class="col-md-6">
+        <p><b>Sentiment results:</b></p>
+      
     </div>
 </form>
 <div class="col-md-6">
