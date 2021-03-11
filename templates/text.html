@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "nav.html" %}
+{% block title %} text {% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
 
 <head>
     <meta charset="UTF-8">
@@ -52,30 +56,32 @@
     </form>
     <div class="col-md-6">
         <p><b>Sentiment results:</b></p>
+      
     </div>
-    <br>
-    <div class="col-md-6">
-        <p><b>Sentiment analysis benefits:</b></p>
-        <ul>
-            <li>Quickly detect negative comments & respond instantly</li>
-            <li>Improve response times to urgent queries by 65%</li>
-            <li>Take on 20% higher data volume</li>
-            <li>Monitor sentiment about your brand, product, or service in real time</li>
-        </ul>
-    </div>
+</form>
+<div class="col-md-6">
+    <p><b>Sentiment results:</b></p>
+</div>
+<br>
+<div class="col-md-6">
+    <p><b>Sentiment analysis benefits:</b></p>
+    <ul>
+        <li>Quickly detect negative comments & respond instantly</li>
+        <li>Improve response times to urgent queries by 65%</li>
+        <li>Take on 20% higher data volume</li>
+        <li>Monitor sentiment about your brand, product, or service in real time</li>
+    </ul>
+</div>
 
-    <script src="/static/js/style.js"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+<script src="/static/js/style.js"></script>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+{% endblock %}

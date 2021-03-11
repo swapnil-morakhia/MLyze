@@ -1,3 +1,4 @@
+
 from flask import Flask, render_template, request, redirect, url_for
 from ProcessText import ProcessText
 
@@ -21,9 +22,19 @@ def text():
     else:
         return render_template('text.html')
 
-@app.route('/login')
+# @app.route('/login')
+# def login():
+#     return render_template('login.html')
+
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    error = None
+    if request.method == 'POST':
+        if request.form['email'] != 'admin@gmail.com' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('text'))
+    return render_template('login.html', error=error)
 
 @app.route('/register')
 def register():
