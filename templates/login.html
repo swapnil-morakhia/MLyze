@@ -21,10 +21,10 @@
 
 
       <!-- Email -->
-      <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" value="{{request.form.email}}">
+      <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="email" value="{{request.form.email}}" required>
 
       <!-- Password -->
-      <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password" value="{{request.form.password }}">
+      <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password" value="{{request.form.password }}" required>
 
       <!-- Sign in button -->
       <button class="btn btn-info btn-block my-4" type="submit" value="login">Sign in</button>
@@ -34,8 +34,9 @@
         <a href="/register">Register</a>
       </p>
 
-
-
+      {% if error%}
+        <p class="error error--hidden">{{error}}</p>
+      {% endif %}
     </form>
     <!-- Default form login -->
   </div>

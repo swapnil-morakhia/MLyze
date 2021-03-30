@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="jquery-3.5.1.min.js"></script>    
+    <!-- <script src="jquery-3.5.1.min.js"></script>     #not needed (not sure) --swapnil-->
     <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 </head>
@@ -19,24 +19,31 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/"><b>MLyze</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/text">Text</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/aboutUs">About us</a>
-                </li>
-                <li>
-                    <a href="/login"><button class="btn btn-outline-success"
-                        type="button">Login/Register</button></a>
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
+                    {% if logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard/">Dashboard</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About us</a>
+                    </li>
+                    {% if logged_in %}
+                        <li class="nav-item">
+                            <a href="/signout"><button class="btn btn-outline-success" type ="button">Signout</button></a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="/login"><button class="btn btn-outline-success" type="button">Login</button></a>
+                        </li>
+                    {% endif %}
                     <!-- <a class="btn btn-outline-success nav-item nav-link" href="login.html"><button>Login</button></a> -->
                 </ul>
             </div>
@@ -44,4 +51,5 @@
     </nav>
     {% block content %}{% endblock %}
 </body>
+
 </html>

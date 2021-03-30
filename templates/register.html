@@ -1,5 +1,5 @@
 {% extends "nav.html" %}
-{% block title %} register {% endblock %}
+{% block title %} Register {% endblock %}
 {% block head %}
 {{ super() }}
 {% endblock %}
@@ -15,30 +15,28 @@
     <div class="card-body px-lg-5 pt-0">
 
         <!-- Default form registration -->
-        <form class="text-center border border-light p-5" action="#!">
+        <form name="signup_form" class="text-center border border-light p-5" action="{{ url_for('register')}}" method="POST">
 
             <!-- firstname -->
-            <input type="text" name="" id="" class="form-control mb-4" placeholder="Enter your first name">
-
-            <!-- lastname -->
-            <input type="text" name="" id="" class="form-control mb-4" placeholder="Enter your last name">
+            <input type="text" name="name" id="" class="form-control mb-4" placeholder="Enter your first name" required>
 
             <!-- Email -->
-            <input type="email" name="" id="" class="form-control mb-4" placeholder="E-mail">
+            <input type="email" name="email" id="" class="form-control mb-4" placeholder="E-mail" required>
 
             <!-- Password -->
-            <input type="password" name="" id="" class="form-control mb-4" placeholder="Password">
+            <input type="password" name="password" id="" class="form-control mb-4" placeholder="Password" required>
 
             <!-- Sign in button -->
             <button class="btn btn-info btn-block my-4" type="submit">Register</button>
 
+            <p class="error error--hidden"></p>
             <!-- Register -->
             <p>Already a member?
                 <a href="/login">Sign In</a>
             </p>
-
-
-
+            <!-- {% if error%} -->
+                <p class="error error--hidden">{{error}}</p>
+            <!-- {% endif %} -->
         </form>
         <!-- Default form login -->
     </div>
