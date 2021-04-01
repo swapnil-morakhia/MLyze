@@ -1,0 +1,97 @@
+#first_page {
+  padding: 25px;
+}
+
+#first_page ul {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-color: #000000;
+}
+
+#first_page ul li {
+  width: 33.3%;
+  display: block;
+  flex: 0 auto auto;
+  list-style-type: none;
+  text-align: center;
+}
+
+#first_page ul li a {
+  color: #B0BEC5;
+  text-decoration: none;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color: #000000;
+}
+
+#first_page ul li a:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+#first_page ul li .active {
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+  background-size: 1000% 1000%;
+  animation: gradient 100s ease-in-out infinite;
+  color: #FFFFFF;
+}
+
+#myTabContent, #home {
+  height: 100%;
+  width: 100%;
+}
+
+#home form {
+  width: 50%;
+  margin-top: 3.5%;
+  float: left;
+}
+
+#home #second_part {
+  height: 300px;
+  width: 50%;
+  margin-top: 5.5%;
+  float: right;
+  overflow-y: scroll;
+  padding: 25px;
+}
+
+#pills-tab li {
+    width: 50%;
+}
+
+#pills-tab li button {
+    width: 100%;
+}
+
+#home #second_part div {
+  border-radius: 50px;
+  margin-top: -10px;
+}
+
+#exampleFormControlTextarea1 {
+  height: 300px;
+  border-radius: 50px;
+  border-color: #000000;
+  padding: 25px;
+  background-color: #FFFFFF;
+}
+
+#perform_analysis_button {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 1000% 1000%;
+	animation: gradient 100s ease-in-out infinite;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color: #000000;
+}
+
+#perform_analysis_button:hover {
+  border-color: white;
+}
