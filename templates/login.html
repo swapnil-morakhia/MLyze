@@ -1,17 +1,29 @@
-{% extends 'base_one.html' %}
-
-{% block content %}
+{% extends 'base_one.html' %} {% block content %}
 <div class="page" id="first_page">
-  <form id="log_in_form">
+  <form id="log_in_form" name="log_in_form" action="{{ url_for('login') }}" method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">EMAIL ADDRESS:</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ENTER EMAIL ADDRESS">
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="ENTER EMAIL ADDRESS" name="email" value="{{request.form.email}}" required />
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">PASSWORD:</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ENTER PASSWORD">
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ENTER PASSWORD"
+        name="password" value="{{request.form.password}}" required />
     </div>
-    <button type="submit" class="btn btn-primary">LOG IN / REGISTER</button>
+    <a href="{{ url_for('login') }}">
+      <button type="submit" class="btn btn-primary">LOG IN</button>
+    </a>
   </form>
+    <div id="log_in_form">
+
+      <a href="{{ url_for('register') }}">
+        <button type="submit" class="btn btn-primary">REGISTER</button>
+      </a>
+    </div>
+
+  {% if error%}
+  <p class="error error--hidden">{{error}}</p>
+  {% endif %}
 </div>
 {% endblock %}
