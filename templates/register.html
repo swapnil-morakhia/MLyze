@@ -3,21 +3,22 @@
   <form id="register_form" name="sign_up_form" action="{{ url_for('register') }}" method="POST">
     <div class="form-group">
       <label for="exampleInputEmail1">First name:</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ENTER EMAIL ADDRESS" name="name"
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ENTER first name" name="name"
         required />
     </div>
     <div class="form-group">
       <label for="exampleInputEmail1">EMAIL ADDRESS:</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
         placeholder="ENTER EMAIL ADDRESS" />
     </div>
     <div class="form-group">
       <label for="exampleInputPassword1">PASSWORD:</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ENTER PASSWORD" />
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ENTER PASSWORD" name="password" required/>
     </div>
       <a href="{{ url_for('register') }}">
         <button type="submit" class="btn btn-primary">REGISTER</button>
       </a>
+      <p class="error error--hidden">{{error}}</p>
   </form>
   <div class="register_form">
 

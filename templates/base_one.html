@@ -31,11 +31,20 @@
             <a class="nav-link" href="{{ url_for('homepage') }}">FEATURES</a>
           </li>
 
+
+          {% if logged_in %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('homepage') }}">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">
               <img src="{{ url_for('static', filename='gallery/logo.png') }}" alt="" id="logo">
             </a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <img src="{{ url_for('static', filename='gallery/logo.png') }}" alt="" id="logo">
+            </a>
+          </li>
+          {% endif %}
 
           <li class="nav-item">
             <a class="nav-link" href="{{ url_for('homepage') }}">PRICING</a>

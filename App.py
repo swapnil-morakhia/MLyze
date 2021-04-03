@@ -40,8 +40,12 @@ def start_session(user):
 
 
 @app.route('/')
-def homepage():
-    return render_template('homepage.html')
+def homepage(logged_in=None):
+    try:
+        logged_in = session['logged_in']
+        return render_template('homepage.html', logged_in)
+    except:
+        return render_template('homepage.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -91,7 +95,7 @@ def login(error = None):
             if request.form.get('password') ==  user_password:
                 user_name = user['name']
                 start_session(user_name)
-                return redirect(url_for('dashboard', name = user_name))
+                return redirect(url_for('dashboard'))
             else:
                 error = "Invalid credentials"
                 return render_template('login.html', error = error)
@@ -109,8 +113,8 @@ def login(error = None):
 @login_required
 def dashboard(logged_in = None):    
     logged_in = session['logged_in']
-    user_name = session['user']
-    print(user_name)
+    # user_name = session['user']
+    # print(user_name)
     return render_template('dashboard.html', logged_in=logged_in)
 
 
