@@ -6,7 +6,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify, s
 # from ProcessText import ProcessText
 from TextAnalysis import TextAnalysis
 from markupsafe import escape
-from flask_mongoengine import MongoEngine
+# from flask_mongoengine import MongoEngine
 import pymongo
 import uuid
 from functools import wraps
@@ -116,8 +116,6 @@ def dashboard(logged_in = None):
     # user_name = session['user']
     # print(user_name)
     return render_template('dashboard.html', logged_in=logged_in)
-
-
 
 @app.route('/analyzing', methods=['GET', 'POST'])
 def analyzing():
