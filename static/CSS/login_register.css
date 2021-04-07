@@ -1,0 +1,32 @@
+#login_register_first_page {
+  height: 77vh;
+}
+
+.form, .login_register_first_page_opposite_area {
+  width: 70%;
+  margin-left: 15%;
+  padding-top: 6%;
+}
+
+.form h1 {
+  text-align: center;
+}
+
+.form input {
+  border-radius: 50px;
+}
+
+.form button, #login_register_first_page button {
+  height: 50px;
+  width: 100%;
+  border-radius: 50px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 800% 800%;
+  animation: gradient 100s ease-in-out infinite;
+  border-color: #000000;
+  border-width: 2px;
+}
+
+.form button:hover, #login_register_first_page button:hover {
+  border-color: #FFFFFF;
+}

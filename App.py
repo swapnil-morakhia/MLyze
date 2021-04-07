@@ -1,12 +1,7 @@
-from flask import Flask, render_template, request
-import json
-from os import name
-from typing import Text
+import os
 from flask import Flask, render_template, request, redirect, url_for, jsonify, session
-# from ProcessText import ProcessText
 from TextAnalysis import TextAnalysis
-from markupsafe import escape
-# from flask_mongoengine import MongoEngine
+from ImageAnalysis import ImageAnalysis
 import pymongo
 import uuid
 from functools import wraps
@@ -64,7 +59,7 @@ def register():
         # Check for existing email address
         if db.users.find_one({"email": user['email']}):
             # return jsonify({"error": "Email address already in use"}), 400
-            
+
             return render_template("register.html", error= "Email address already in use")
 
         if db.users.insert_one(user):
@@ -84,14 +79,14 @@ def signout():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login(error = None):
-    
+
     if request.method == 'POST':
         user = db.users.find_one({
             "email": request.form.get('email')
         })
 
         if user:
-            user_password = user['password']    
+            user_password = user['password']
             if request.form.get('password') ==  user_password:
                 user_name = user['name']
                 start_session(user_name)
@@ -111,7 +106,7 @@ def login(error = None):
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
-def dashboard(logged_in = None):    
+def dashboard(logged_in = None):
     logged_in = session['logged_in']
     # user_name = session['user']
     # print(user_name)
@@ -121,11 +116,25 @@ def dashboard(logged_in = None):
 def analyzing():
     if request.method == 'POST':
         text_analysis = TextAnalysis(request.form['text'])
-        print(text_analysis.get_response())
         return render_template('dashboard.html', dictionary_response=text_analysis.get_response())
     else:
         return render_template('dashboard.html', dictionary_response=dict())
 
+app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\uploads'
+
+@app.route('/image_analysis', methods=['GET', 'POST'])
+def image_analysis():
+    if request.method == 'POST':
+
+        print(request.form['person_name'])
+        image = request.files['person_image']
+        image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'upload.jpg'))
+
+        perform_image_analysis = ImageAnalysis(request.form['person_name'])
+
+        return render_template('dashboard.html', dicttionary_response=perform_image_analysis.analyse())
+    else:
+        return render_template('dashboard.html', dicttionary_response=dict())
 
 if __name__ == '__main__':
     app.run(debug=True)

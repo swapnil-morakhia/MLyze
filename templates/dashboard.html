@@ -1,61 +1,60 @@
-{% extends 'base_one.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div class="page" id="first_page">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
+<div class="page" id="dashboard_first_page">
+  <!-- Unordered list containing all the three tabs (text, image and video analysis tabs). -->
+  <ul class="nav nav-tabs" id="analysis_tabs_list" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-        aria-selected="true">TEXT ANALYSIS</a>
+      <a class="nav-link active" id="text_analysis_division_tab" data-toggle="tab" href="#text_analysis_division" role="tab" aria-controls="text_analysis_division" aria-selected="true">TEXT ANALYSIS</a>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-        aria-selected="false">IMAGE ANALYSIS</a>
+      <a class="nav-link" id="image_analysis_division_tab" data-toggle="tab" href="#image_analysis_division" role="tab" aria-controls="image_analysis_division" aria-selected="false">IMAGE ANALYSIS</a>
     </li>
+
     <li class="nav-item">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-        aria-selected="false">VIDEO ANALYSIS</a>
+      <a class="nav-link" id="video_analysis_division_tab" data-toggle="tab" href="#video_analysis_division" role="tab" aria-controls="video_analysis_division" aria-selected="false">VIDEO ANALYSIS</a>
     </li>
   </ul>
 
+  <!-- Division containing tab contents. -->
+  <div class="tab-content" id="entire_analysis_area">
+    <!-- Text analysis division. -->
+    <div class="tab-pane fade show active" id="text_analysis_division" role="tabpanel" aria-labelledby="text_analysis_division_tab">
+      <div id="text_analysis_division_left">
+        <form action="/analyzing" method="post">
+          <div class="form-group">
+            <input class="form-control" id="text_analysis_text_area" type="text" name="text" placeholder="ENTER THE TEXT YOU WANT TO PERFORM NLP ON" required/>
+          </div>
+          <button type="submit" class="btn btn-primary" id="perform_text_analysis_button">PERFORM ANALYSIS</button>
+        </form>
+      </div>
 
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
-      <form action="/analyzing" method="post">
-        <div class="form-group">
-          <label for="exampleFormControlTextarea1">ENTER THE TEXT YOU WANT TO PERFORM ML ON:</label>
-          <input class="form-control" id="exampleFormControlTextarea1" type="text" name="text" />
-        </div>
-        <button type="submit" class="btn btn-primary" id="perform_analysis_button">PERFORM ANALYSIS</button>
-      </form>
-
-      <div id="second_part">
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-              type="button" role="tab" aria-controls="pills-home" aria-selected="true">TEXT</button>
+      <div id="text_analysis_division_right">
+        <ul class="nav nav-tabs" id="text_analysis_result_tabs_list" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="text_analysis_division_tab" data-toggle="tab" href="#textual_representation_division" role="tab" aria-controls="textual_representation_division" aria-selected="true">TEXTUAL REPRESENTATION</a>
           </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-              type="button" role="tab" aria-controls="pills-profile" aria-selected="false">JSON</button>
+          <li class="nav-item">
+            <a class="nav-link" id="json_representation_division_tab" data-toggle="tab" href="#json_representation_division" role="tab" aria-controls="json_representation_division" aria-selected="false">JSON REPRESENTATION</a>
           </li>
         </ul>
 
-        <div class="tab-content" id="pills-tabContent">
-          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="textual_representation_division" role="tabpanel" aria-labelledby="textual_representation_division_tab">
             {% if dictionary_response|length > 0 %}
             {% for sentence, polarity in dictionary_response.sentences.items() %}
             <tr>
               {% if polarity > 0 %}
-              <div class="alert alert-success" role="alert">
+              <div class="textual_representation_division_message" id="textual_representation_division_positive">
                 {{ sentence }} ({{ polarity }})
               </div>
               {% elif polarity == 0 %}
-              <div class="alert alert-warning" role="alert">
+              <div class="textual_representation_division_message" id="textual_representation_division_neutral">
                 {{ sentence }} ({{ polarity }})
               </div>
               {% else %}
-              <div class="alert alert-danger" role="alert">
+              <div class="textual_representation_division_message" id="textual_representation_division_negative">
                 {{ sentence }} ({{ polarity }})
               </div>
               {% endif %}
@@ -64,18 +63,43 @@
             {% endif %}
           </div>
 
-
-          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            JSON FORMAT
-            {{ dictionary_response }}
+          <div class="tab-pane fade" id="json_representation_division" role="tabpanel" aria-labelledby="json_representation_division_tab">
+            {% if dictionary_response|length > 0 %}
+              <pre style="color: #FFFFFF">
+  {
+    sentences_with_polarity: {
+    {% for sentence, polarity in dictionary_response.sentences.items() %}
+        {{ sentence }} : {{ polarity }}
+    {% endfor %}
+    },
+    nouns: { {{ ', '.join(dictionary_response.nouns) }} }
+  }
+              </pre>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
 
-    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">image analysis</div>
+    <!-- Image analysis division. -->
+    <div class="tab-pane fade" id="image_analysis_division" role="tabpanel" aria-labelledby="image_analysis_division_tab">
+      <form action="/image_analysis" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <input class="form-control" type="text" name="person_name" id="image_analysis_person_input" placeholder="ENTER NAME OF THE PERSON YOU WANT TO DETECT" required/>
+          <input type="file" id="image_analysis_image_input" name="person_image">
 
-    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">video analysis</div>
+          <div id="display_uploaded_image">
+
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="perform_image_analysis_button">PERFORM ANALYSIS</button>
+      </form>
+    </div>
+
+    <!-- Video analysis division. -->
+    <div class="tab-pane fade" id="video_analysis_division" role="tabpanel" aria-labelledby="video_analysis_division_tab">
+      <h1>COMING SOON</h1>
+    </div>
   </div>
 </div>
 {% endblock %}
