@@ -1,6 +1,6 @@
 from GoogleImageScrapper import GoogleImageScraper
 import cv2
-import face_recognition
+# import face_recognition
 import os
 
 class ImageAnalysis:
