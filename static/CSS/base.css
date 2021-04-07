@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'oswald';
+  src: url('oswald.ttf') format('truetype');
+}
+
+* {
+  font-family: oswald;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 1000% 1000%;
+	animation: gradient 100s ease-in-out infinite;
+  padding: 25px;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#navigation_bar {
+  height: 10%;
+  background-color: #000000;
+  border-radius: 50px;
+}
+
+#logo {
+  height: 25px;
+  width: 100px;
+}
+
+#navbarSupportedContent ul {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+#navbarSupportedContent ul li {
+    display: block;
+    flex: 0 1 auto;
+    list-style-type: none;
+}
+
+#navbarSupportedContent ul li a {
+  color: #B0BEC5;
+}
+
+#navbarSupportedContent ul li a:hover {
+  color: #FFFFFF;
+}
+
+#navbarSupportedContent button {
+  border-radius: 50px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 800% 800%;
+  animation: gradient 100s ease-in-out infinite;
+  border-color: #000000;
+  border-width: 2px;
+}
+
+#navbarSupportedContent button:hover {
+  border-color: #FFFFFF;
+}
+
+.page {
+  height: 90vh;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 50px;
+  margin-top: 45px;
+  color: #FFFFFF;
+}
+
+/* Division containing contact information. */
+#contact_us {
+  height: 90vh;
+  padding-top: 10%;
+}
+
+#upper {
+  height: 370px;
+  width: 70%;
+  margin-left: 15%;
+}
+
+#upper h1 {
+  text-align: center;
+}
+
+#upper input {
+  border-radius: 50px;
+  border-color: #000000;
+}
+
+#upper_input_first_name {
+  width: 50%;
+  float: left;
+}
+
+#upper_input_last_name {
+  width: 50%;
+}
+
+#upper_input_email {
+  margin-top: 15px;
+}
+
+#upper textarea {
+  margin-top: 15px;
+}
+
+#upper button {
+  height: 50px;
+  width: 100%;
+  border-radius: 50px;
+  border-color: #000000;
+  border-width: 2px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 800% 800%;
+  animation: gradient 100s ease-in-out infinite;
+  margin-top: 15px;
+}
+
+#upper button:hover {
+  border-color: #FFFFFF;
+}
+
+#social_media {
+  height: 50px;
+  width: 100%;
+  margin-top: -40px;
+}
+
+#social_media_inner {
+  height: 50px;
+  width: 33%;
+  margin-left: 33%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+#social_media img {
+  height: 30px;
+  width: 30px;
+  margin-left: 70px;
+}
+
+/* Last division containing names of all the developers. */
+#developed_by {
+  height: 10vh;
+  padding-top: 10px;
+  text-align: center;
+}

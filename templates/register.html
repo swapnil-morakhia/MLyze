@@ -1,28 +1,28 @@
-{% extends 'base_one.html' %} {% block content %}
-<div class="page" id="first_page">
-  <form id="register_form" name="sign_up_form" action="{{ url_for('register') }}" method="POST">
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="page" id="login_register_first_page">
+  <form class="form" name="sign_up_form" action="{{ url_for('register') }}" method="POST">
+    <h1>REGISTER</h1>
     <div class="form-group">
-      <label for="exampleInputEmail1">First name:</label>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="ENTER first name" name="name"
-        required />
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="FULL NAME" name="name" required />
     </div>
     <div class="form-group">
-      <label for="exampleInputEmail1">EMAIL ADDRESS:</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
-        placeholder="ENTER EMAIL ADDRESS" />
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="EMAIL ADDRESS" required/>
     </div>
     <div class="form-group">
-      <label for="exampleInputPassword1">PASSWORD:</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ENTER PASSWORD" name="password" required/>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="PASSWORD" name="password" required/>
     </div>
       <a href="{{ url_for('register') }}">
         <button type="submit" class="btn btn-primary">REGISTER</button>
       </a>
       <p class="error error--hidden">{{error}}</p>
   </form>
-  <div class="register_form">
 
-    <p>ALready a member?</p>
+
+  <div class="login_register_first_page_opposite_area">
+
+    <p>ALREADY A MEMBER?</p>
     <a href="{{ url_for('login') }}">
       <button type="submit" class="btn btn-primary">LOG IN</button>
     </a>
