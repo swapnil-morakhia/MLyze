@@ -5,6 +5,7 @@ from ImageAnalysis import ImageAnalysis
 import pymongo
 import uuid
 from functools import wraps
+import json
 from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
@@ -125,7 +126,7 @@ def analyzing(logged_in = None):
     else:
         return render_template('dashboard.html', dictionary_response=dict(), logged_in=logged_in)
 
-app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\uploads'
+app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\uploads'
 
 @app.route('/image_analysis', methods=['GET', 'POST'])
 @login_required
@@ -138,9 +139,16 @@ def image_analysis(logged_in = None):
 
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
 
+        print(perform_image_analysis.analyse())
         return render_template('dashboard.html', dicttionary_response=perform_image_analysis.analyse(), logged_in=logged_in)
     else:
         return render_template('dashboard.html', dicttionary_response=dict(), logged_in=logged_in)
+
+@app.route('/test')
+def test():
+    json_representation = json.loads('{"test": "working"}')
+
+    return json_representation
 
 if __name__ == '__main__':
     app.run(debug=True)

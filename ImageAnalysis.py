@@ -10,12 +10,12 @@ class ImageAnalysis:
 
     def scrape_images(self, person_object_name):
         webdriver_path = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\web_driver\\chromedriver.exe'
-        image_path = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\downloads'
+        image_path = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\downloads'
 
         search_keys = [person_object_name]
 
         # Parameters
-        number_of_images = 10
+        number_of_images = 5
         headless = False
         min_resolution = (0, 0)
         max_resolution = (5000, 5000)
@@ -28,7 +28,7 @@ class ImageAnalysis:
     def verify_person_object(self):
         train_encodings = list()
 
-        for root, dirs, files in os.walk('C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\downloads', topdown=False):
+        for root, dirs, files in os.walk('C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\downloads', topdown=False):
             for name in files:
                 train_image = face_recognition.load_image_file(os.path.join(root, name))
                 train_image = cv2.cvtColor(train_image, cv2.COLOR_BGR2RGB)
@@ -37,7 +37,7 @@ class ImageAnalysis:
                     train_image_encoding = face_recognition.face_encodings(train_image)[0]
                     train_encodings.append(train_image_encoding)
 
-        test_image = face_recognition.load_image_file('C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\uploads\\upload.jpg')
+        test_image = face_recognition.load_image_file('static/gallery/uploads\\upload.jpg')
         test_image = cv2.cvtColor(test_image, cv2.COLOR_BGR2RGB)
 
         present = False
@@ -50,7 +50,6 @@ class ImageAnalysis:
             confidence = self.count_true(result) / len(result)
             present = True if confidence > 0.5 else False
 
-        print(present, confidence)
         return {'present': present, 'confidence': confidence}
 
     def count_true(self, result):

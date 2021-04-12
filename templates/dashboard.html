@@ -88,9 +88,23 @@
           <input class="form-control" type="text" name="person_name" id="image_analysis_person_input" placeholder="ENTER NAME OF THE PERSON YOU WANT TO DETECT" required/>
           <input type="file" id="image_analysis_image_input" name="person_image">
 
+          {% if image_analysis_dictionary_response|length > 0 %}
+          <div id="display_uploaded_image" style="background-image: url({{ url_for('static', filename='gallery/uploads/upload.jpg') }})">
+            {% if image_analysis_dictionary_response.present == True %}
+              <div class="image_analysis_result" id="image_analysis_result_positive">
+                <p>Present. ({{ image_analysis_dictionary_response.confidence }})</p>
+              </div>
+            {% else %}
+              <div class="image_analysis_result" id="image_analysis_result_negative">
+                <p>Not present. ({{ 1 - image_analysis_dictionary_response.confidence }})</p>
+              </div>
+            {% endif %}
+          </div>
+          {% else %}
           <div id="display_uploaded_image">
 
           </div>
+          {% endif %}
         </div>
         <button type="submit" class="btn btn-primary" id="perform_image_analysis_button">PERFORM ANALYSIS</button>
       </form>
