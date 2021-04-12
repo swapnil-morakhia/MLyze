@@ -5,6 +5,7 @@ from ImageAnalysis import ImageAnalysis
 import pymongo
 import uuid
 from functools import wraps
+import json
 
 app = Flask(__name__)
 
@@ -120,21 +121,26 @@ def analyzing():
     else:
         return render_template('dashboard.html', dictionary_response=dict())
 
-app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\uploads'
+app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\uploads'
 
 @app.route('/image_analysis', methods=['GET', 'POST'])
 def image_analysis():
     if request.method == 'POST':
-
-        print(request.form['person_name'])
         image = request.files['person_image']
         image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'upload.jpg'))
 
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
 
-        return render_template('dashboard.html', dicttionary_response=perform_image_analysis.analyse())
+        print(perform_image_analysis.analyse())
+        return render_template('dashboard.html', id='#image_analysis_division', image_analysis_dictionary_response=perform_image_analysis.analyse())
     else:
-        return render_template('dashboard.html', dicttionary_response=dict())
+        return render_template('dashboard.html', image_analysis_dictionary_response=dict())
+
+@app.route('/test')
+def test():
+    json_representation = json.loads('{"test": "working"}')
+
+    return json_representation
 
 if __name__ == '__main__':
     app.run(debug=True)
