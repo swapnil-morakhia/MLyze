@@ -6,6 +6,7 @@ import pymongo
 import uuid
 from functools import wraps
 import json
+from passlib.hash import pbkdf2_sha256
 
 app = Flask(__name__)
 
@@ -34,7 +35,6 @@ def start_session(user):
     # print(session)
     return jsonify(user), 200
 
-
 @app.route('/')
 def homepage(logged_in=None):
     try:
@@ -56,7 +56,9 @@ def register():
             "password": request.form.get('password')
         }
         print(user)
-        # user['password'] = pbkdf2_sha256.encrypt(user['password'])
+        
+        user['password'] = pbkdf2_sha256.encrypt(user['password'])
+        
         # Check for existing email address
         if db.users.find_one({"email": user['email']}):
             # return jsonify({"error": "Email address already in use"}), 400
@@ -88,7 +90,8 @@ def login(error = None):
 
         if user:
             user_password = user['password']
-            if request.form.get('password') ==  user_password:
+            # if request.form.get('password') ==  user_password:
+            if pbkdf2_sha256.verify(request.form.get('password'), user_password):
                 user_name = user['name']
                 start_session(user_name)
                 return redirect(url_for('dashboard'))
@@ -114,27 +117,32 @@ def dashboard(logged_in = None):
     return render_template('dashboard.html', logged_in=logged_in)
 
 @app.route('/analyzing', methods=['GET', 'POST'])
-def analyzing():
+@login_required
+def analyzing(logged_in = None):
     if request.method == 'POST':
+        logged_in = session['logged_in']
         text_analysis = TextAnalysis(request.form['text'])
-        return render_template('dashboard.html', dictionary_response=text_analysis.get_response())
+        return render_template('dashboard.html', dictionary_response=text_analysis.get_response(), logged_in=logged_in)
     else:
-        return render_template('dashboard.html', dictionary_response=dict())
+        return render_template('dashboard.html', dictionary_response=dict(), logged_in=logged_in)
 
 app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\uploads'
 
 @app.route('/image_analysis', methods=['GET', 'POST'])
-def image_analysis():
+@login_required
+def image_analysis(logged_in = None):
     if request.method == 'POST':
+        logged_in = session['logged_in']
+        print(request.form['person_name'])
         image = request.files['person_image']
         image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'upload.jpg'))
 
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
 
         print(perform_image_analysis.analyse())
-        return render_template('dashboard.html', id='#image_analysis_division', image_analysis_dictionary_response=perform_image_analysis.analyse())
+        return render_template('dashboard.html', dicttionary_response=perform_image_analysis.analyse(), logged_in=logged_in)
     else:
-        return render_template('dashboard.html', image_analysis_dictionary_response=dict())
+        return render_template('dashboard.html', dicttionary_response=dict(), logged_in=logged_in)
 
 @app.route('/test')
 def test():
