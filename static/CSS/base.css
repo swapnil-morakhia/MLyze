@@ -1,3 +1,6 @@
+html{
+scroll-behavior: smooth;
+}
 @font-face {
   font-family: 'oswald';
   src: url('oswald.ttf') format('truetype');
@@ -10,10 +13,10 @@
 body {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+  background: linear-gradient(-45deg,  #ff9d9d, #6dece6);
 	background-size: 1000% 1000%;
-	animation: gradient 100s ease-in-out infinite;
-  padding: 25px;
+	animation: gradient 5s ease infinite;
+  padding: 15px;
 }
 
 @keyframes gradient {
@@ -30,13 +33,17 @@ body {
 
 #navigation_bar {
   height: 10%;
-  background-color: #000000;
-  border-radius: 50px;
+  
+  width: 100%;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  
+  opacity: 1;
 }
 
 #logo {
-  height: 25px;
-  width: 100px;
+  height: 30px;
+  width: 150px;
 }
 
 #navbarSupportedContent ul {
@@ -54,7 +61,7 @@ body {
 }
 
 #navbarSupportedContent ul li a {
-  color: #B0BEC5;
+  color: black;
 }
 
 #navbarSupportedContent ul li a:hover {
@@ -63,11 +70,11 @@ body {
 
 #navbarSupportedContent button {
   border-radius: 50px;
-  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
 	background-size: 800% 800%;
   animation: gradient 100s ease-in-out infinite;
-  border-color: #000000;
+  background-color: black;
   border-width: 2px;
+  
 }
 
 #navbarSupportedContent button:hover {
@@ -78,15 +85,91 @@ body {
   height: 90vh;
   width: 100%;
   background-color: #000000;
-  border-radius: 50px;
+  border-radius: 25px;
   margin-top: 45px;
-  color: #FFFFFF;
+  color: white;
+  opacity: .6;
+}
+
+
+
+.top2 {
+  min-height: 90%;
+  width: 100%;
+  background-color: #000000;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-top: 0;
+  color: white;
+  opacity: 1;
+  
+  
+  
+}
+
+.top1 {
+  min-height: 100%;
+  width: 100%;
+  background-color: #000000;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  color: white;
+  margin-top: px;
+  opacity: 1;
+  background-color: #000000;
+  
+  
+}
+
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* Add some content at the bottom of the video/page */
+.content {
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #f1f1f1;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Style the button used to pause/play the video */
+#myBtn {
+  width: 200px;
+  font-size: 18px;
+  padding: 10px;
+  border: none;
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+}
+
+#myBtn:hover {
+  background: #ddd;
+  color: black;
 }
 
 /* Division containing contact information. */
 #contact_us {
-  height: 90vh;
+  height: 60%;
   padding-top: 10%;
+  width: 40%;
+  padding: 50px;
+  background-color: white;
+  border-radius: 50px;
+  margin-top: 45px;
+  color: black;
+  
+  
+  
 }
 
 #upper {
@@ -125,9 +208,8 @@ body {
   height: 50px;
   width: 100%;
   border-radius: 50px;
-  border-color: #000000;
+  background-color: black;
   border-width: 2px;
-  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
 	background-size: 800% 800%;
   animation: gradient 100s ease-in-out infinite;
   margin-top: 15px;
@@ -160,7 +242,78 @@ body {
 
 /* Last division containing names of all the developers. */
 #developed_by {
-  height: 10vh;
+  height: 10%;
   padding-top: 10px;
   text-align: center;
+  
+  width: 100%;
+  background-color: #000000;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  margin-top: 45px;
+  margin-bottom: -100px;
+  color: white;
+  
+  background-color: black;
+  
+  
+}
+
+
+.glow-on-hover {
+  width: 220px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 30px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 30px;
+}
+
+.glow-on-hover:active {
+  color: #000
+}
+
+
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 30px;
+}
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
 }

@@ -14,6 +14,10 @@ app = Flask(__name__)
 client = pymongo.MongoClient('localhost', 27017)
 db = client.mydatabase
 
+print('hi')
+print('client', client)
+print('db', db)
+
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # Decorators

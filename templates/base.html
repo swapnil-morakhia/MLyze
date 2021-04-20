@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -45,7 +46,7 @@
             {% endif %}
 
             <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('homepage') }}">CONTACT US</a>
+              <a class="nav-link" href="#contact_us">CONTACT US</a>
             </li>
             {% if logged_in %}
             <a href="{{ url_for('signout') }}">
@@ -54,7 +55,7 @@
             {% else %}
             <li>
               <a href="{{ url_for('login') }}">
-                <button type="button" class="btn btn-primary">LOG IN / REGISTER</button>
+                <button class="glow-on-hover" type="button" class="btn btn-primary">LOG IN / REGISTER</button>
               </a>
             </li>
             {% endif %}
@@ -66,32 +67,33 @@
     <!-- Contains all the elements between navigation bar and contact us division. -->
     {% block content %}
     {% endblock %}
-
+    
     <!-- Division containing contact information. -->
-    <div class="page" id="contact_us">
+    <div class="contactus" id="contact_us">
       <form id="upper">
         <h1>CONTACT US</h1>
 
-        <input type="text" id="upper_input_first_name" class="form-control" placeholder="FIRST NAME" required>
-        <input type="text" id="upper_input_last_name" class="form-control" placeholder="LAST NAME" required>
-        <input type="email" id="upper_input_email" class="form-control" placeholder="EMAIL ADDRESS" required>
-        <textarea class="form-control" rows="3">MESSAGE</textarea>
+        <input style="text-align: center;" type="text" id="upper_input_first_name" class="form-control" placeholder="FIRST NAME" required>
+        <input style="text-align: center;" type="text" id="upper_input_last_name" class="form-control" placeholder="LAST NAME" required>
+        <input style="text-align: center;" type="email" id="upper_input_email" class="form-control" placeholder="EMAIL ADDRESS" required>
+        <textarea style="text-align: center;" class="form-control" rows="3" placeholder="MESSAGE"></textarea>
 
         <button type="submit" class="btn btn-primary">SUBMIT</button>
-      </form>
+      </form></div>
+      
 
-      <div id="social_media">
+      <!--div id="social_media">
         <div id="social_media_inner">
           <img src="../static/gallery/facebook.svg"/>
           <img src="../static/gallery/instagram.svg"/>
           <img src="../static/gallery/twitter.svg"/>
           <img src="../static/gallery/youtube.svg"/>
         </div>
-      </div>
-    </div>
+      </div>-->
+      
 
     <!-- Last division containing names of all the developers. -->
-    <div class="page" id="developed_by">
+    <div class="bottom_dev" id="developed_by">
       <p>
         <u><b>SSW-695A</u>:</b> SOFTWARE ENGINEERING CAPSTONE STUDIO <br>
         <u><b>TEAM MLYZE</u>:</b> ELTON ALOYSIUS, SAKSHAM TIWARI, SHIVANI PRABHU, SWAPNIL MORAKHIA
