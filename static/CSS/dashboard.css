@@ -1,0 +1,199 @@
+#dashboard_first_page {
+  height: 77vh;
+  padding: 25px;
+}
+
+/* Styling analysis tabs. */
+#analysis_tabs_list {
+  border: none;
+}
+
+#analysis_tabs_list li {
+  width: 33.3%;
+  text-align: center;
+}
+
+#analysis_tabs_list li a {
+  height: 50px;
+  border-radius: 50px;
+  border-width: 2px;
+  border-color: #000000;
+  color: #B0BEC5;
+}
+
+#analysis_tabs_list li a:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+#analysis_tabs_list li .active {
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+  background-size: 1000% 1000%;
+  animation: gradient 100s ease-in-out infinite;
+  color: #FFFFFF;
+}
+
+#entire_analysis_area {
+  max-height: 400px;
+  width: 70%;
+  margin-top: 25px;
+  margin-left: 15%;
+}
+
+/* Styling text analysis section. */
+#text_analysis_division_left {
+  width: 50%;
+  float: left;
+  margin-top: 75px;
+}
+
+#text_analysis_text_area {
+  height: 300px;
+  border-radius: 50px;
+}
+
+#text_analysis_division_right {
+  width: 50%;
+  float: right;
+}
+
+#text_analysis_result_tabs_list {
+  border: none;
+}
+
+#text_analysis_result_tabs_list li {
+  width: 50%;
+  text-align: center;
+}
+
+#text_analysis_result_tabs_list li a {
+  height: 50px;
+  border-radius: 50px;
+  border-width: 2px;
+  border-color: #000000;
+  color: #B0BEC5;
+}
+
+#text_analysis_result_tabs_list li a:hover {
+  color: #FFFFFF;
+  border-color: #FFFFFF;
+}
+
+#text_analysis_result_tabs_list li .active {
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+  background-size: 1000% 1000%;
+  animation: gradient 100s ease-in-out infinite;
+  color: #FFFFFF;
+}
+
+#perform_text_analysis_button {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+	background-size: 1000% 1000%;
+	animation: gradient 100s ease-in-out infinite;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color: #000000;
+}
+
+#perform_analysis_button:hover {
+  border-color: #FFFFFF;
+}
+
+#textual_representation_division {
+  max-height: 375px;
+  margin-top: 15px;
+  overflow-y: scroll;
+}
+
+#textual_representation_division div {
+  border-radius: 50px;
+}
+
+.textual_representation_division_message {
+  height: 50px;
+  color: #000000;
+  padding: 12px;
+  margin-top: 10px;
+}
+
+#textual_representation_division_positive {
+  color: #FFFFFF;
+  background-color: #00C853;
+}
+
+#textual_representation_division_neutral {
+  background-color: #FFD600;
+}
+
+#textual_representation_division_negative {
+  color: #FFFFFF;
+  background-color: #DD2C00;
+}
+
+#json_representation_division {
+  max-height: 375px;
+  margin-top: 15px;
+  overflow-y: scroll;
+}
+
+/* Styling image analysis section. */
+#image_analysis_person_input {
+  border-radius: 50px;
+}
+
+#image_analysis_image_input {
+  margin-top: 15px;
+  margin-left: 45%;
+}
+
+#display_uploaded_image {
+  height: 300px;
+  width: 33.3%;
+  margin-top: 15px;
+  margin-left: 33.3%;
+  border: 2px solid #FFFFFF;
+  border-radius: 50px;
+  background-size: cover;
+  background-position: center;
+}
+
+.image_analysis_result {
+  height: 50px;
+  width: 100%;
+  border: 2px solid #FFFFFF;
+  border-radius: 50px;
+  margin-top: 230px;
+  padding: 10px;
+  color: #FFFFFF;
+}
+
+#image_analysis_result_positive {
+  background-color: #00C853;
+}
+
+#image_analysis_result_negative {
+  background-color: #DD2C00;
+}
+
+#perform_image_analysis_button {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(-45deg, #380036, #0CBABA, #380036, #0CBABA, #000000);
+  background-size: 1000% 1000%;
+  animation: gradient 100s ease-in-out infinite;
+  border-width: 2px;
+  border-radius: 50px;
+  border-color: #000000;
+}
+
+#perform_image_analysis_button:hover {
+  border-color: #FFFFFF;
+}
+
+/* Styling video analysis section. */
+#video_analysis_division h1 {
+  margin-top: 13%;
+  text-align: center;
+}
