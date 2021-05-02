@@ -1,6 +1,6 @@
 from GoogleImageScrapper import GoogleImageScraper
 import cv2
-# import face_recognition
+import face_recognition
 import os
 
 class ImageAnalysis:
@@ -9,8 +9,8 @@ class ImageAnalysis:
         self.dictionary_response = self.verify_person_object()
 
     def scrape_images(self, person_object_name):
-        webdriver_path = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\web_driver\\chromedriver.exe'
-        image_path = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\downloads'
+        webdriver_path = '.\\web_driver\\chromedriver.exe'
+        image_path = '.\\static\\gallery\\downloads'
 
         search_keys = [person_object_name]
 
@@ -28,7 +28,7 @@ class ImageAnalysis:
     def verify_person_object(self):
         train_encodings = list()
 
-        for root, dirs, files in os.walk('C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\downloads', topdown=False):
+        for root, dirs, files in os.walk('.\\static\\gallery\\downloads', topdown=False):
             for name in files:
                 train_image = face_recognition.load_image_file(os.path.join(root, name))
                 train_image = cv2.cvtColor(train_image, cv2.COLOR_BGR2RGB)
@@ -37,7 +37,7 @@ class ImageAnalysis:
                     train_image_encoding = face_recognition.face_encodings(train_image)[0]
                     train_encodings.append(train_image_encoding)
 
-        test_image = face_recognition.load_image_file('static/gallery/uploads\\upload.jpg')
+        test_image = face_recognition.load_image_file('.\\static\\gallery\\uploads\\upload.jpg')
         test_image = cv2.cvtColor(test_image, cv2.COLOR_BGR2RGB)
 
         present = False

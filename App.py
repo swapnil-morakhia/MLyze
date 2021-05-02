@@ -95,6 +95,7 @@ def login(error = None):
         if user:
             user_password = user['password']
             # if request.form.get('password') ==  user_password:
+            
             if pbkdf2_sha256.verify(request.form.get('password'), user_password):
                 user_name = user['name']
                 start_session(user_name)
@@ -130,7 +131,8 @@ def analyzing(logged_in = None):
     else:
         return render_template('dashboard.html', dictionary_response=dict(), logged_in=logged_in)
 
-app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\Desktop\\Python\\MLyze\\static\\gallery\\uploads'
+app.config['IMAGE_UPLOADS'] = '.\\static\\gallery\\uploads'
+# app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\p\\Python\\MLyze\\static\\gallery\\uploads'
 
 @app.route('/image_analysis', methods=['GET', 'POST'])
 @login_required
@@ -144,7 +146,7 @@ def image_analysis(logged_in = None):
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
 
         print(perform_image_analysis.analyse())
-        return render_template('dashboard.html', dicttionary_response=perform_image_analysis.analyse(), logged_in=logged_in)
+        return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), logged_in=logged_in)
     else:
         return render_template('dashboard.html', dicttionary_response=dict(), logged_in=logged_in)
 
