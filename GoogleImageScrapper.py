@@ -37,7 +37,8 @@ class GoogleImageScraper:
             options.add_argument('--headless')
         try:
             driver = webdriver.Chrome(self.webdriver_path, chrome_options=options)
-            driver.set_window_size(1400, 1050)
+            # driver.set_window_size(1400, 1050)
+            driver.minimize_window
             driver.get(self.url)
         except Exception:
             print("[-] Please update the chromedriver.exe in the webdriver folder according to your chrome version:https://chromedriver.chromium.org/downloads")

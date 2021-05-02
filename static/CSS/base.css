@@ -161,14 +161,14 @@ body {
 #contact_us {
   height: 60%;
   padding-top: 10%;
-  width: 40%;
+  /* width: 40%; */
   padding: 50px;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 50px;
   margin-top: 45px;
   color: black;
-  
-  
+
+  justify-content: center;
   
 }
 
@@ -242,7 +242,7 @@ body {
 
 /* Last division containing names of all the developers. */
 #developed_by {
-  height: 10%;
+  height: 50;
   padding-top: 10px;
   text-align: center;
   
@@ -250,10 +250,12 @@ body {
   background-color: #000000;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
   margin-top: 45px;
   margin-bottom: -100px;
   color: white;
-  
+  font-style: italic;
   background-color: black;
   
   

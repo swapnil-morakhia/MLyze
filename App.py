@@ -80,9 +80,7 @@ def signout():
     session.clear()
     return redirect('/')
 
-# @app.route('/login')
-# def login():
-#     return render_template('login.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login(error = None):
@@ -109,17 +107,14 @@ def login(error = None):
     return render_template('login.html', error = error)
 
 
-# @app.route('/dashboard')
-# def dashboard():
-#     return render_template('dashboard.html', dictionary_response=dict())
-
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard(logged_in = None):
     logged_in = session['logged_in']
     # user_name = session['user']
     # print(user_name)
-    return render_template('dashboard.html', logged_in=logged_in)
+    text_analysis_activated = True
+    return render_template('dashboard.html', text_analysis_activated = text_analysis_activated, logged_in=logged_in)
 
 @app.route('/analyzing', methods=['GET', 'POST'])
 @login_required
@@ -127,9 +122,10 @@ def analyzing(logged_in = None):
     if request.method == 'POST':
         logged_in = session['logged_in']
         text_analysis = TextAnalysis(request.form['text'])
-        return render_template('dashboard.html', dictionary_response=text_analysis.get_response(), logged_in=logged_in)
+        text_analysis_activated = True
+        return render_template('dashboard.html', dictionary_response=text_analysis.get_response(), text_analysis_activated = text_analysis_activated, logged_in=logged_in)
     else:
-        return render_template('dashboard.html', dictionary_response=dict(), logged_in=logged_in)
+        return render_template('dashboard.html', dictionary_response=dict(),logged_in=logged_in)
 
 app.config['IMAGE_UPLOADS'] = '.\\static\\gallery\\uploads'
 # app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\p\\Python\\MLyze\\static\\gallery\\uploads'
@@ -144,11 +140,12 @@ def image_analysis(logged_in = None):
         image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'upload.jpg'))
 
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
-
+        image_analysis_activated = True
         print(perform_image_analysis.analyse())
-        return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), logged_in=logged_in)
+        return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), image_analysis_activated = image_analysis_activated, logged_in=logged_in)
     else:
-        return render_template('dashboard.html', dicttionary_response=dict(), logged_in=logged_in)
+        image_analysis_activated = True
+        return render_template('dashboard.html', dicttionary_response=dict(), image_analysis_activated=image_analysis_activated ,logged_in=logged_in)
 
 @app.route('/test')
 def test():
