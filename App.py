@@ -14,10 +14,6 @@ app = Flask(__name__)
 client = pymongo.MongoClient('localhost', 27017)
 db = client.mydatabase
 
-print('hi')
-print('client', client)
-print('db', db)
-
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 # Decorators
@@ -35,8 +31,6 @@ def start_session(user):
     # del user['password']
     session['logged_in'] = True
     session['user'] = user
-    # print(user)
-    # print(session)
     return jsonify(user), 200
 
 @app.route('/')
@@ -59,7 +53,6 @@ def register():
             "email": request.form.get('email'),
             "password": request.form.get('password')
         }
-        print(user)
         
         user['password'] = pbkdf2_sha256.encrypt(user['password'])
         
@@ -112,7 +105,7 @@ def login(error = None):
 def dashboard(logged_in = None):
     logged_in = session['logged_in']
     # user_name = session['user']
-    # print(user_name)
+    # `print`(user_name)
     text_analysis_activated = True
     return render_template('dashboard.html', text_analysis_activated = text_analysis_activated, logged_in=logged_in)
 
@@ -135,23 +128,37 @@ app.config['IMAGE_UPLOADS'] = '.\\static\\gallery\\uploads'
 def image_analysis(logged_in = None):
     if request.method == 'POST':
         logged_in = session['logged_in']
-        print(request.form['person_name'])
         image = request.files['person_image']
         image.save(os.path.join(app.config["IMAGE_UPLOADS"], 'upload.jpg'))
 
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
         image_analysis_activated = True
-        print(perform_image_analysis.analyse())
+
+
+
         return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), image_analysis_activated = image_analysis_activated, logged_in=logged_in)
     else:
         image_analysis_activated = True
         return render_template('dashboard.html', dicttionary_response=dict(), image_analysis_activated=image_analysis_activated ,logged_in=logged_in)
 
-@app.route('/test')
-def test():
-    json_representation = json.loads('{"test": "working"}')
+@app.route('/text_analysis/<text>')
+def test(text):
+    text_analysis = TextAnalysis(text)
+    dictionary_response = {'sentences': dict(), 'nouns': dict()}
 
-    return json_representation
+    for key, value in text_analysis.get_response().items():
+        if key == 'sentences':
+            for sentence, polarity in text_analysis.get_response()[key].items():
+                dictionary_response['sentences']['sentence'] = sentence
+                dictionary_response['sentences']['polarity'] = polarity
+        else:
+            id = 0
+
+            for noun in value:
+                dictionary_response['nouns'][id] = noun
+                id += 1
+
+    return json.dumps(dictionary_response)
 
 if __name__ == '__main__':
     app.run(debug=True)
