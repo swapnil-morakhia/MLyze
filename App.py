@@ -121,6 +121,7 @@ def analyzing(logged_in = None):
         return render_template('dashboard.html', dictionary_response=dict(),logged_in=logged_in)
 
 app.config['IMAGE_UPLOADS'] = '.\\static\\gallery\\uploads'
+app.config['IMAGE_DOWNLOADS'] = '.\\static\\gallery\\downloads'
 # app.config['IMAGE_UPLOADS'] = 'C:\\Users\\Saksham\\p\\Python\\MLyze\\static\\gallery\\uploads'
 
 @app.route('/image_analysis', methods=['GET', 'POST'])
@@ -134,7 +135,8 @@ def image_analysis(logged_in = None):
         perform_image_analysis = ImageAnalysis(request.form['person_name'])
         image_analysis_activated = True
 
-
+        for file in os.listdir(app.config['IMAGE_DOWNLOADS']):
+            os.remove(os.path.join(app.config['IMAGE_DOWNLOADS'], file))
 
         return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), image_analysis_activated = image_analysis_activated, logged_in=logged_in)
     else:
