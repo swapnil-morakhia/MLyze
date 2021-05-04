@@ -31,10 +31,11 @@ class GoogleImageScraper:
         image_urls = []
         count = 0
         missed_count = 0
+        options= webdriver.ChromeOptions()
+        
         options = Options()
-
-        if self.headless:
-            options.add_argument('--headless')
+        options.add_argument('headless')
+        
         try:
             driver = webdriver.Chrome(self.webdriver_path, chrome_options=options)
             # driver.set_window_size(1400, 1050)
