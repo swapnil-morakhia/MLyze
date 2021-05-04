@@ -133,12 +133,12 @@ def image_analysis(logged_in = None):
         filename = image.filename
         image.save(os.path.join(app.config["IMAGE_UPLOADS"], filename))
 
-        perform_image_analysis = ImageAnalysis(request.form['person_name'])
+        perform_image_analysis = ImageAnalysis(request.form['person_name'], filename)
         image_analysis_activated = True
 
         for file in os.listdir(app.config['IMAGE_DOWNLOADS']):
             os.remove(os.path.join(app.config['IMAGE_DOWNLOADS'], file))
-
+        print()
         return render_template('dashboard.html', image_analysis_dictionary_response=perform_image_analysis.analyse(), image_analysis_activated = image_analysis_activated, logged_in=logged_in, filename=filename)
     else:
         image_analysis_activated = True
