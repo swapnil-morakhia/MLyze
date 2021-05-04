@@ -91,7 +91,8 @@
           <input type="file" id="image_analysis_image_input" name="person_image">
           
           {% if image_analysis_dictionary_response|length > 0 %}
-          <div id="display_uploaded_image" style="background-image: url({{ url_for('static', filename='gallery/uploads/upload.jpg') }})">
+          <div id="display_uploaded_image" style="background-image: url({{ url_for('static', filename='gallery/uploads/' + filename) }}">
+            
             {% if image_analysis_dictionary_response.present == True %}
             <div class="image_analysis_result" id="image_analysis_result_positive">
               <p>Present. ({{ image_analysis_dictionary_response.confidence }})</p>
