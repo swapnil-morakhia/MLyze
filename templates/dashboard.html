@@ -85,10 +85,21 @@
     
     <!-- Image analysis division. -->
     <div class="tab-pane fade " id="image_analysis_division" role="tabpanel" aria-labelledby="image_analysis_division_tab">
-      <form action="/image_analysis" method="post" enctype="multipart/form-data">
+      <form id='myform' action="/image_analysis" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <input class="form-control" type="text" name="person_name" id="image_analysis_person_input" placeholder="ENTER NAME OF THE PERSON YOU WANT TO DETECT" required/>
           <input type="file" id="image_analysis_image_input" name="person_image">
+          
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+          <script>$(document).ready(function(){
+          $("#myform").on("submit", function(){
+          $("#pageloader").fadeIn();
+          });//submit
+          });//document ready
+          </script>
+
+        
           
           {% if image_analysis_dictionary_response|length > 0 %}
           <div id="display_uploaded_image" style="background-image: url({{ url_for('static', filename='gallery/uploads/' + filename) }}">
@@ -111,6 +122,9 @@
         </div>
         
         <button type="submit" class="btn btn-primary" id="perform_image_analysis_button" >PERFORM ANALYSIS</button>
+        
+          <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." style="visibility: hidden;" />
+       
       </form>
     </div>
     
