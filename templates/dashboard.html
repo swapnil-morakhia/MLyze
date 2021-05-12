@@ -92,11 +92,13 @@
           
 
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-          <script>$(document).ready(function(){
-          $("#myform").on("submit", function(){
-          $("#pageloader").fadeIn();
-          });//submit
-          });//document ready
+          <script>
+          $(document).ready(function(){
+          $('perform_image_analysis_button').click(function(){
+          $('#img').show();
+          }); //<----here
+          });
+          $('#img').hide();  //<--- hide again
           </script>
 
         
@@ -123,7 +125,7 @@
         
         <button type="submit" class="btn btn-primary" id="perform_image_analysis_button" >PERFORM ANALYSIS</button>
         
-          <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." style="visibility: hidden;" />
+          <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." style="display: none;" />
        
       </form>
     </div>
