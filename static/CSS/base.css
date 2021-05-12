@@ -161,9 +161,9 @@ body {
 #contact_us {
   height: 60%;
   padding-top: 10%;
-  /* width: 40%; */
+  width: 40%; 
   padding: 50px;
-  /* background-color: white; */
+  background-color: white; 
   border-radius: 50px;
   margin-top: 45px;
   color: black;
