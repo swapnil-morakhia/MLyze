@@ -48,7 +48,7 @@ class ImageAnalysis:
         if len(face_recognition.face_encodings(test_image)) > 0:
             test_image_encoding = face_recognition.face_encodings(test_image)[0]
             result = face_recognition.compare_faces(train_encodings, test_image_encoding)
-            confidence = self.count_true(result) / len(result)
+            confidence = 0 if len(result) == 0 else self.count_true(result) / len(result)
             
             present = True if confidence > 0.5 else False
 
